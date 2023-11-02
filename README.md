@@ -12,6 +12,13 @@ Stealthier alternative to whoami.exe or other well-known binaries. It is written
 ![esquema](https://raw.githubusercontent.com/ricardojoserf/ricardojoserf.github.io/master/images/stealthyenv/Screenshot_0.png)
 
 
-#### Example
+### Examples
+
+64 bit process:
 
 ![64 bits](https://raw.githubusercontent.com/ricardojoserf/ricardojoserf.github.io/master/images/stealthyenv/Screenshot_1.png)
+
+
+32 bit process:
+
+![32 bits](https://raw.githubusercontent.com/ricardojoserf/ricardojoserf.github.io/master/images/stealthyenv/Screenshot_2.png)
