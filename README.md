@@ -1,7 +1,7 @@
 # StealthyEnv
 Alternative to whoami.exe or other well-known binaries to get the environment variables. It is written in C# and I guess it is stealthier because it gets the values parsing the PEB structure.
 
-- Function [NtQueryInformationProcess](https://learn.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntqueryinformationprocess) returns a "_PROCESS_BASIC_INFORMATION" structure containing a pointer to the PEB base address.
+- Function [NtQueryInformationProcess](https://learn.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntqueryinformationprocess) returns a "PROCESS_BASIC_INFORMATION" structure containing a pointer to the PEB base address.
 
 - The PEB structure contains a pointer "ProcessParameters" to a [RTL_USER_PROCESS_PARAMETERS](https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/api/pebteb/rtl_user_process_parameters.htm) structure.
 
