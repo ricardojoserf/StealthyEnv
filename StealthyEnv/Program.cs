@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace GetModuleHandle
+namespace StealthyEnv
 {
     internal class Program
     {
