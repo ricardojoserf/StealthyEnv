@@ -9,8 +9,9 @@ namespace StealthyEnv
     internal class Program
     {
         [DllImport("ntdll.dll", SetLastError = true)] static extern int NtQueryInformationProcess(IntPtr processHandle, int processInformationClass, ref PROCESS_BASIC_INFORMATION pbi, uint processInformationLength, ref uint returnLength);
-        [DllImport("kernel32.dll", SetLastError = true)] static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] lpBuffer, int dwSize, out IntPtr lpNumberOfBytesRead);
-        
+        [DllImport("ntdll.dll", SetLastError = true)] static extern bool NtReadVirtualMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] lpBuffer, int dwSize, out IntPtr lpNumberOfBytesRead);
+
+
         private struct PROCESS_BASIC_INFORMATION { public uint ExitStatus; public IntPtr PebBaseAddress; public UIntPtr AffinityMask; public int BasePriority; public UIntPtr UniqueProcessId; public UIntPtr InheritedFromUniqueProcessId; }
         // Reference: _PEB and _RTL_USER_PROCESS_PARAMETERS structures
         // typedef struct _PEB { BYTE Reserved1[2]; BYTE BeingDebugged; BYTE Reserved2[1]; PVOID Reserved3[2]; PPEB_LDR_DATA Ldr; PRTL_USER_PROCESS_PARAMETERS  ProcessParameters; BYTE Reserved4[104]; PVOID Reserved5[52]; PPS_POST_PROCESS_INIT_ROUTINE PostProcessInitRoutine; BYTE Reserved6[128]; PVOID Reserved7[1]; ULONG SessionId; } PEB, *PPEB;
@@ -87,7 +88,7 @@ namespace StealthyEnv
             // Console.WriteLine("\n[+] Reading {0} bytes from 0x{1} to 0x{2}...", environment_size, environment_start.ToString("X"), (environment_end).ToString("X"));
             Console.WriteLine("\n[+] Result:");
             byte[] data = new byte[(int)environment_size];
-            ReadProcessMemory(hProcess, environment_start, data, data.Length, out _);
+            NtReadVirtualMemory(hProcess, environment_start, data, data.Length, out _);
             byte[] result = Replace(data, new byte[] { 0, 0, 0 }, new byte[] { 0, 10, 0 });
             String environment_vars = Encoding.Unicode.GetString(result);
             Console.WriteLine(environment_vars);
